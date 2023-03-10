@@ -1,0 +1,11 @@
+image: gitpod/workspace-full
+
+tasks:
+  - name: Startup
+    init: |
+      cargo install nu
+      cd src
+vscode:
+  extensions:
+    - yzhang.markdown-all-in-one
+    - DavidAnson.vscode-markdownlint
