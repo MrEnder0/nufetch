@@ -24,7 +24,7 @@ let wifi_down = (sys).net.0.recv
 let full_user = $"(ansi -e { fg: $env.accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
 let full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)"
 let full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
-let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
+let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) (ansi -e { fg: $env.accent_hex })↑(ansi reset)($wifi_up) (ansi -e { fg: $env.accent_hex })↓(ansi reset)($wifi_down)"
 
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
