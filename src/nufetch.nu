@@ -20,10 +20,10 @@ let wifi_up = (sys).net.0.sent
 let wifi_down = (sys).net.0.recv
 
 #output prep
-let full_user = $"($user)@ ($os_full_name) ($os_kernel_version)"
-let full_cpu = $"CPU: ($cpu_name)"
-let full_mem = $"Memory: ($mem_used) / ($mem_total)"
-let full_net = $"Network: ($wifi_name) ↑($wifi_up) ↓($wifi_down)"
+let full_user = $"(ansi -e { fg: '#3cb371' })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
+let full_cpu = $"(ansi -e { fg: '#3cb371' })CPU: (ansi reset)($cpu_name)"
+let full_mem = $"(ansi -e { fg: '#3cb371' })Memory: (ansi reset)($mem_used) (ansi -e { fg: '#3cb371' })/(ansi reset) ($mem_total)"
+let full_net = $"(ansi -e { fg: '#3cb371' })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
 
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
