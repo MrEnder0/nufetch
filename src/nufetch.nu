@@ -1,6 +1,6 @@
-#nufetch vars
-let nufetch_ver = "2023-004"
-let accent_hex = "#3cb371"
+use config.nu *
+
+let-env nufetch_ver = "2023-005"
 
 #sysinfo vars
 let os_full_name = (sys).host.long_os_version
@@ -21,10 +21,10 @@ let wifi_up = (sys).net.0.sent
 let wifi_down = (sys).net.0.recv
 
 #output prep
-let full_user = $"(ansi -e { fg: $accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
-let full_cpu = $"(ansi -e { fg: $accent_hex })CPU: (ansi reset)($cpu_name)"
-let full_mem = $"(ansi -e { fg: $accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $accent_hex })/(ansi reset) ($mem_total)"
-let full_net = $"(ansi -e { fg: $accent_hex })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
+let full_user = $"(ansi -e { fg: $env.accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
+let full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)"
+let full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
+let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
 
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
@@ -33,14 +33,17 @@ if ((sys).host.long_os_version | str contains "Windows") {
     Yb  db  dP  w 8d8b. .d88 .d8b. Yb  db  dP d88b 
      YbdPYbdP   8 8P Y8 8  8 8' .8  YbdPYbdP  `Yb. 
       YP  YP    8 8   8 `Y88 `Y8P'   YP  YP   Y88P"
-} else {
+} else if ((sys).host.long_os_version | str contains "Linux") {
     let-env acii_art = $"    8     w                   
     8     w  8d8b.  8   8  Yb dP 
     8     8  8P Y8  8b d8   `8.  
     8888  8  8   8  `Y8P8  dP Yb"
+} else {
+    let-env ascii_art = " \n"
+    echo "Unknown OS found leaving ascii art blank."
 }
 
 #output
-let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $accent_hex })($env.acii_art)"
-let $output = [[$"NuFetch v($nufetch_ver)"]; [$full_output];]
+let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
+let $output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
 echo $output
