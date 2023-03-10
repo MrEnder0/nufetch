@@ -1,5 +1,6 @@
 #nufetch vars
 let nufetch_ver = "2023-004"
+let accent_hex = "#3cb371"
 
 #sysinfo vars
 let os_full_name = (sys).host.long_os_version
@@ -20,10 +21,10 @@ let wifi_up = (sys).net.0.sent
 let wifi_down = (sys).net.0.recv
 
 #output prep
-let full_user = $"(ansi -e { fg: '#3cb371' })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
-let full_cpu = $"(ansi -e { fg: '#3cb371' })CPU: (ansi reset)($cpu_name)"
-let full_mem = $"(ansi -e { fg: '#3cb371' })Memory: (ansi reset)($mem_used) (ansi -e { fg: '#3cb371' })/(ansi reset) ($mem_total)"
-let full_net = $"(ansi -e { fg: '#3cb371' })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
+let full_user = $"(ansi -e { fg: $accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
+let full_cpu = $"(ansi -e { fg: $accent_hex })CPU: (ansi reset)($cpu_name)"
+let full_mem = $"(ansi -e { fg: $accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $accent_hex })/(ansi reset) ($mem_total)"
+let full_net = $"(ansi -e { fg: $accent_hex })Network: (ansi reset)($wifi_name) ↑($wifi_up) ↓($wifi_down)"
 
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
@@ -40,6 +41,6 @@ if ((sys).host.long_os_version | str contains "Windows") {
 }
 
 #output
-let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: '#3cb371' })($env.acii_art)"
+let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $accent_hex })($env.acii_art)"
 let $output = [[$"NuFetch v($nufetch_ver)"]; [$full_output];]
 echo $output
