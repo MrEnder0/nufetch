@@ -1,5 +1,5 @@
 #nufetch vars
-let nufetch_ver = "2023-003"
+let nufetch_ver = "2023-004"
 
 #sysinfo vars
 let os_full_name = (sys).host.long_os_version
@@ -33,13 +33,13 @@ if ((sys).host.long_os_version | str contains "Windows") {
      YbdPYbdP   8 8P Y8 8  8 8' .8  YbdPYbdP  `Yb. 
       YP  YP    8 8   8 `Y88 `Y8P'   YP  YP   Y88P"
 } else {
-    let-env acii_art = "    8     w                   
+    let-env acii_art = $"    8     w                   
     8     w  8d8b.  8   8  Yb dP 
     8     8  8P Y8  8b d8   `8.  
     8888  8  8   8  `Y8P8  dP Yb"
 }
 
 #output
-let full_output = $full_user + "\n" + $full_cpu + "\n" + $full_mem + "\n" + $full_net + "\n" + $env.acii_art
+let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: '#3cb371' })($env.acii_art)"
 let $output = [[$"NuFetch v($nufetch_ver)"]; [$full_output];]
 echo $output
