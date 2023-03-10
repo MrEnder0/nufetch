@@ -3,3 +3,7 @@ Note none of these plans are guaranteed and also their may be other changes that
 
 # High priority
 [ ] Create installer script
+[ ] Create options for cpu (display, show core count)
+[ ] Create options for mem (display, show max, show use)
+[ ] Show ascii art
+[ ] Custom footer option
