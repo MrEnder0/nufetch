@@ -1,5 +1,5 @@
 #nufetch vars
-let nufetch_ver = "0.5"
+let nufetch_ver = "2023-003"
 
 #sysinfo vars
 let os_full_name = (sys).host.long_os_version
@@ -25,7 +25,21 @@ let full_cpu = $"CPU: ($cpu_name)"
 let full_mem = $"Memory: ($mem_used) / ($mem_total)"
 let full_net = $"Network: ($wifi_name) ↑($wifi_up) ↓($wifi_down)"
 
+#acii art
+if ((sys).host.long_os_version | str contains "Windows") {
+    #acii art for windows logo
+    let-env acii_art = "   Yb        dP w          8                       
+    Yb  db  dP  w 8d8b. .d88 .d8b. Yb  db  dP d88b 
+     YbdPYbdP   8 8P Y8 8  8 8' .8  YbdPYbdP  `Yb. 
+      YP  YP    8 8   8 `Y88 `Y8P'   YP  YP   Y88P"
+} else {
+    let-env acii_art = "8    w                   
+    8    w 8d8b. 8   8 Yb dP 
+    8    8 8P Y8 8b d8  `8.  
+    8888 8 8   8 `Y8P8 dP Yb"
+}
+
 #output
-let full_output = $full_user + "\n" + $full_cpu + "\n" + $full_mem + "\n" + $full_net
+let full_output = $full_user + "\n" + $full_cpu + "\n" + $full_mem + "\n" + $full_net + "\n" + $env.acii_art
 let $output = [[$"NuFetch v($nufetch_ver)"]; [$full_output];]
 echo $output
