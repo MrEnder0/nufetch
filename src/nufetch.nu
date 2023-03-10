@@ -33,10 +33,10 @@ if ((sys).host.long_os_version | str contains "Windows") {
      YbdPYbdP   8 8P Y8 8  8 8' .8  YbdPYbdP  `Yb. 
       YP  YP    8 8   8 `Y88 `Y8P'   YP  YP   Y88P"
 } else {
-    let-env acii_art = "    8    w                   
-    8    w 8d8b. 8   8 Yb dP 
-    8    8 8P Y8 8b d8  `8.  
-    8888 8 8   8 `Y8P8 dP Yb"
+    let-env acii_art = "    8     w                   
+    8     w  8d8b.  8   8  Yb dP 
+    8     8  8P Y8  8b d8   `8.  
+    8888  8  8   8  `Y8P8  dP Yb"
 }
 
 #output
