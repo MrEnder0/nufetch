@@ -1,4 +1,4 @@
-use config.nu *
+use nufetch_config.nu *
 
 let-env nufetch_ver = "2023-005"
 
@@ -30,10 +30,10 @@ let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_na
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
     #acii art for windows logo
-    let-env acii_art = "   Yb        dP w          8                       
-    Yb  db  dP  w 8d8b. .d88 .d8b. Yb  db  dP d88b 
-     YbdPYbdP   8 8P Y8 8  8 8' .8  YbdPYbdP  `Yb. 
-      YP  YP    8 8   8 `Y88 `Y8P'   YP  YP   Y88P"
+    let-env acii_art = "   Yb        dP  w            8                       
+    Yb  db  dP   w  8d8b.  .d88  .d8b.  Yb  db  dP  d88b 
+     YbdPYbdP    8  8P Y8  8  8  8' .8   YbdPYbdP   `Yb. 
+      YP  YP     8  8   8  `Y88  `Y8P'    YP  YP    Y88P"
 } else if ((sys).host.long_os_version | str contains "Linux") {
     let-env acii_art = $"    8     w                   
     8     w  8d8b.  8   8  Yb dP 
