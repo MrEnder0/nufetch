@@ -25,7 +25,13 @@ let wifi_down = (sys).net.0.recv
 
 #output prep
 let full_user = $"(ansi -e { fg: $env.accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
-let full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)" + $" (ansi -e { fg: $env.accent_hex })[(ansi reset)($cpu_core_count)(ansi -e { fg: $env.accent_hex })](ansi reset)"
+
+if ($env.show_cpu_core_count == true) {
+    let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)" + $" (ansi -e { fg: $env.accent_hex })[(ansi reset)($cpu_core_count)(ansi -e { fg: $env.accent_hex })](ansi reset)"
+} else {
+    let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)"
+}
+
 let full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
 let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) (ansi -e { fg: $env.accent_hex })↑(ansi reset)($wifi_up) (ansi -e { fg: $env.accent_hex })↓(ansi reset)($wifi_down)"
 
@@ -47,6 +53,6 @@ if ((sys).host.long_os_version | str contains "Windows") {
 }
 
 #output
-let full_output = $"($full_user)\n($full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
+let full_output = $"($full_user)\n($env.full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
 let $output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
 echo $output
