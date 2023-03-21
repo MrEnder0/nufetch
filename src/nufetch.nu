@@ -1,3 +1,5 @@
+#!/usr/bin/env nu
+
 use nufetch_config.nu *
 
 let-env nufetch_ver = "2023-005"
