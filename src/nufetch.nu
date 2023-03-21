@@ -26,10 +26,14 @@ let wifi_down = (sys).net.0.recv
 #output prep
 let full_user = $"(ansi -e { fg: $env.accent_hex })($user)(ansi reset)@($os_full_name) ($os_kernel_version)"
 
-if ($env.show_cpu_core_count == true) {
-    let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)" + $" (ansi -e { fg: $env.accent_hex })[(ansi reset)($cpu_core_count)(ansi -e { fg: $env.accent_hex })](ansi reset)"
+if ($env.show_cpu_info == true) {
+    if ($env.show_cpu_core_count == true) {
+        let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)" + $" (ansi -e { fg: $env.accent_hex })[(ansi reset)($cpu_core_count)(ansi -e { fg: $env.accent_hex })](ansi reset)"
+    } else {
+        let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)"
+    }
 } else {
-    let-env full_cpu = $"(ansi -e { fg: $env.accent_hex })CPU: (ansi reset)($cpu_name)"
+    let-env full_cpu = ""
 }
 
 let full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
