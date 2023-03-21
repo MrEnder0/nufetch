@@ -2,7 +2,7 @@
 
 use nufetch_config.nu *
 
-let-env nufetch_ver = "2023-005"
+let-env nufetch_ver = "2023-006"
 
 #sysinfo vars
 let os_full_name = (sys).host.long_os_version
@@ -36,7 +36,16 @@ if ($env.show_cpu_info == true) {
     let-env full_cpu = ""
 }
 
-let full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
+if ($env.show_mem_info == true) {
+    if ($env.show_used_mem == true) {
+        let-env full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_used) (ansi -e { fg: $env.accent_hex })/(ansi reset) ($mem_total)"
+    } else {
+        let-env full_mem = $"(ansi -e { fg: $env.accent_hex })Memory: (ansi reset)($mem_total)"
+    }
+} else {
+    let-env full_mem = ""
+}
+
 let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) (ansi -e { fg: $env.accent_hex })↑(ansi reset)($wifi_up) (ansi -e { fg: $env.accent_hex })↓(ansi reset)($wifi_down)"
 
 #acii art
@@ -57,6 +66,6 @@ if ((sys).host.long_os_version | str contains "Windows") {
 }
 
 #output
-let full_output = $"($full_user)\n($env.full_cpu)\n($full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
+let full_output = $"($full_user)\n($env.full_cpu)\n($env.full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
 let $output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
 echo $output
