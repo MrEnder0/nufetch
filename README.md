@@ -12,6 +12,8 @@ This is supported on Windows and Linux due to [NuShell](https://github.com/nushe
 
 Download the nushell.nu and nushell_config.nu files and put them in your NuShell config folder.
 
+<sub><sup><sub><sup> I was too lazy to make a windows install script so you have to do it on your own or just run it portably... </sup></sub></sup></sub>
+
 ### Linux
 
 Make sure you have [NuShell](https://github.com/nushell/nushell) and [Curl](https://github.com/curl/curl) installed.
