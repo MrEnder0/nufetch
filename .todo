@@ -3,6 +3,5 @@ Note none of these plans are guaranteed and also their may be other changes that
 
 # High priority
 [ ] Add update check for the Linux install script before installing
-[ ] Create options for wifi (display, show up and down)
 [ ] Custom footer option
 [ ] Add a delay before exit option
