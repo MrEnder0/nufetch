@@ -5,3 +5,6 @@ Note none of these plans are guaranteed and also their may be other changes that
 [ ] Add update check for the Linux install script before installing
 [ ] Custom footer option
 [ ] Add a delay before exit option
+[ ] Add mac ascii art
+[ ] Add ascii art for individual distros / win versios
+[ ] Make ascii art into diff file
