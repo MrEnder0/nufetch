@@ -46,7 +46,15 @@ if ($env.show_mem_info == true) {
     let-env full_mem = ""
 }
 
-let full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) (ansi -e { fg: $env.accent_hex })↑(ansi reset)($wifi_up) (ansi -e { fg: $env.accent_hex })↓(ansi reset)($wifi_down)"
+if ($env.show_net_info == true) {
+    if ($env.show_net_traffic == true) {
+        let-env full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name) (ansi -e { fg: $env.accent_hex })↑(ansi reset)($wifi_up) (ansi -e { fg: $env.accent_hex })↓(ansi reset)($wifi_down)"
+    } else {
+        let-env full_net = $"(ansi -e { fg: $env.accent_hex })Network: (ansi reset)($wifi_name)"
+    }
+} else {
+    let-env full_net = ""
+}
 
 #acii art
 if ((sys).host.long_os_version | str contains "Windows") {
@@ -66,6 +74,6 @@ if ((sys).host.long_os_version | str contains "Windows") {
 }
 
 #output
-let full_output = $"($full_user)\n($env.full_cpu)\n($env.full_mem)\n($full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
+let full_output = $"($full_user)\n($env.full_cpu)\n($env.full_mem)\n($env.full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
 let $output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
 echo $output
