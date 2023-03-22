@@ -4,4 +4,6 @@ export-env {
     let-env show_cpu_core_count = true
     let-env show_mem_info = true
     let-env show_used_mem = true
+    let-env show_net_info = true
+    let-env show_net_traffic = true
 }
