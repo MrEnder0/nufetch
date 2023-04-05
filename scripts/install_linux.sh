@@ -2,7 +2,7 @@
 NUFETCH=~/.nufetch/nufetch.nu
 if [ -f "$NUFETCH" ]; then
     echo "$NUFETCH already exists so we will now uninstall Nufetch"
-    rm -r ~/.nufetch/*
+    rm -r ~/.nufetch
     echo "Finished uninstalling Nufetch"
 else 
     echo "Could not find Nufetch installing..."
