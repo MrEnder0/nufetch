@@ -1,4 +1,5 @@
 export-env {
+    let-env show_nufetch_ver = true
     let-env accent_hex = "#3cb371"
     let-env show_cpu_info = true
     let-env show_cpu_core_count = true

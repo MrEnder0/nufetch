@@ -75,5 +75,10 @@ if ((sys).host.long_os_version | str contains "Windows") {
 
 #output
 let full_output = $"($full_user)\n($env.full_cpu)\n($env.full_mem)\n($env.full_net)\n(ansi -e { fg: $env.accent_hex })($env.acii_art)"
-let $output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
-echo $output
+
+if ($env.show_nufetch_ver == true) {
+    let-env output = [[$"NuFetch v($env.nufetch_ver)"]; [$full_output];]
+} else {
+    let-env output = [["NuFetch"]; [$full_output];]
+}
+echo $env.output
