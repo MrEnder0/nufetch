@@ -4,7 +4,7 @@ if [ -f "$NUFETCH" ]; then
     echo "$NUFETCH already exists would you like to re-install (1) or un-install (2): default 1"
 
     read option
-    if option == "1" || option == ""; then
+    if $option == "1" || $option == ""; then
         rm -r ~/.nufetch/*
         curl -o ~/.nufetch/nufetch.nu https://raw.githubusercontent.com/MrEnder0/nufetch/master/src/nufetch.nu
         curl -o ~/.nufetch/nufetch_config.nu https://raw.githubusercontent.com/MrEnder0/nufetch/master/src/nufetch_config.nu
