@@ -1,7 +1,20 @@
 #Test for existing install
 NUFETCH=~/.nufetch/nufetch.nu
 if [ -f "$NUFETCH" ]; then
-    echo "$NUFETCH already exists would you like to re-install or un-install"
+    echo "$NUFETCH already exists would you like to re-install (1) or un-install (2): default 1"
+
+    readline option
+    if readline == "1" || readline == ""; then
+        rm -r ~/.nufetch/*
+        curl -o ~/.nufetch/nufetch.nu https://raw.githubusercontent.com/MrEnder0/nufetch/master/src/nufetch.nu
+        curl -o ~/.nufetch/nufetch_config.nu https://raw.githubusercontent.com/MrEnder0/nufetch/master/src/nufetch_config.nu
+        chmod +x ~/.nufetch/nufetch.nu
+
+        echo "Finished reinstalling Nufetch"
+    else
+        rm -r ~/.nufetch/*
+        echo "Finished uninstalling Nufetch"
+    fi
 else 
     echo "Could not find Nufetch installing..."
     # Download files and install
